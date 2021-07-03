@@ -1,0 +1,40 @@
+1. 简述ios事件处理机制
+参考答案：
+	流程：UIApplication -> UIWindow -> UIView（递归查找子view）
+        关键类：1，必须继承UIResponder类才能处理事件2，UITouch对象保存事件
+	关键方法：hitTest:withEvent:,touchesBegan，touchesMoved，touchesEnded，touchesCancelled方法
+
+2. 一个不固定UITableViewCell高度的UITableview有哪些性能上需要考虑
+参考答案：
+	1，UITableViewCell重用
+	2，没有用到的代理方法不要实现
+	3,根据cell数据提前计算UITableViewCell高度。
+	4，刷新的时候刷新特定cell
+	5，尽量少使用clearColor，alpha为0的
+
+3. NSTimer的使用过程中需要注意什么？如何避免？
+参考答案：
+	1，NSTimer默认工作模式是在主线程中进行的，所当出现如scrollview滑动的一些操作时，timer会停止，所以要么在线程中
+设置timer，要么用NSRunLoopCommonModes模式启动timer
+	2，nstimer在退出界面的时候，如果没有停止并释放，会导致内存泄漏，当前controller deallloc方法不调用
+	3，用GCD实现
+
+4. 请写出不同场景下下面的方法调用顺序：viewDidDisappear viewDidLoad loadView viewWillDisappear viewDidAppear viewWillAppear
+	场景1:只有一个FirstViewController，页面展示的时候：
+	场景2:从FirstViewController push到SecondViewController：
+	场景3:从SecondViewController pop回FirstViewController
+	注意：请标明没次调用的是哪个Controller的哪个方法：如viewDidDisappear(FirstViewController)
+参考答案：
+	场景1:loadView(FirstViewController),viewDidLoad(FirstViewController),viewWillAppear(FirstViewController),viewDidAppear(FirstViewController)
+	场景2:viewWillDisappear(FirstViewController),loadView(SecondViewController),viewDidLoad(SecondViewController),viewWillAppear(SecondViewController),viewDidDisappear(FirstViewController),viewDidAppear(SecondViewController)
+	场景3:viewWillDisappear(SecondViewController)   viewWillAppear(FirstViewController)   viewDidDisappear(SecondViewController)  viewDidAppear(FirstViewController)
+
+
+5. 简述ios应用程序状态
+
+    参考答案：
+	非运行状态（注册后能接收通知）
+	运行状态 （使用状态）
+	后台运行状态(home键之后的状态)
+	暂停状态（home键一段时间后，内存不够用的时候又可能会被系统杀死回收）
+	不活跃状态（电话中断，短信，通知等中断）
