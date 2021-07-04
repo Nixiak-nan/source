@@ -1,0 +1,108 @@
+一、文件操作
+新建菜单： ctrl + N
+新建： ctrl + N
+关闭： ctrl + w
+全部关闭： ctrl + shift + w
+保存： ctrl + s
+全部保存： ctrl + shift + s
+刷新： F5
+属性： Alt + Enter
+
+二、编辑操作
+激活代码助手：Alt + /
+显示方法参数提示： Alt + Shift + ?
+撤销： Ctrl + Z
+重做： Ctrl + Y
+复制选区或光标所在行： Ctrl + C
+剪切选区或光标所在行： Ctrl + X
+粘贴： Ctrl + V
+复制文件路径： Ctrl + Shift + C
+改写切换： 插入
+删除： 删除
+删除当前行： Ctrl + D
+删除前一词： Ctrl + Backspace
+删除后一词： Ctrl + Delete
+删除至行首： Shift + Backspace
+删除至行尾： Shift + Delete
+删除当前标签： Ctrl + Shift + T
+安全重命名对象： Ctrl + F2
+重命名文件： F2
+合并下一行： Ctrl + Alt + J
+整理代码格式： Ctrl + Shift + F
+向上移动行： Ctrl + 向上箭头
+向上移动行： Ctrl + 向下箭头
+选中当前行： Ctrl + L
+开启/关闭注释整行： Ctrl + /
+开启/关闭注释已选内容： Ctrl + Shift + /
+注释分隔条： Ctrl + Shift + B
+对选中标签加包围（加P元素）： Ctrl + 9
+去包围： Ctrl + 0
+快速修正： Ctrl + 1
+
+三、插入操作
+向下空行： Ctrl + Enter
+向上空行： Ctrl + Shift + Enter
+重复插入当前行或选中区域： Ctrl + Shift + R
+快速插入空白字符（nbsp）： Shift + 空格键
+快速插入<br/> (在html中）： Shift + Enter
+快速插入\n（在js、 css中）：Shift + Enter
+插入HTML标签（使用当前词）： Ctrl + Shift + ，
+切换插入方式： Ctrl + Shift + 插入
+插入词语结尾符： Ctrl + Alt + Enter
+
+四、转义操作
+全部大写： Ctrl + Shift + X
+全部小写： Ctrl + Shift + Y
+首字大写： Ctrl + Shift + -
+URL转码： Ctrl + Shift + 7
+URL解码： Ctrl + Shift + 5
+八进制转十进制： Ctrl + Shift + 0
+十进制转八进制： Ctrl + Shift + 8
+十六进制转十进制： Ctrl + Shift + 9
+十进制转十六进制： Ctrl + Shift + 6
+
+五、选择操作
+全选： Ctrl + A
+向左选词： Ctrl + Shift + 左箭头
+向右选词： Ctrl + Shift + 右箭头
+选择相同词： Ctrl + Shift + A
+选择HTML父节点： Ctrl + Alt + 向上箭头
+选前一个节点： Ctrl + Alt + 向左箭头
+选后一个节点： Ctrl + Alt + 向右箭头
+选所有子节点： Ctrl + Alt + 向下箭头
+选择成对内容： Ctrl + [
+列选择： Ctrl + Alt + C
+块选择： Alt + Shift + A
+选择至行首： Ctrl + 主页键
+选择至行末： Ctrl + End
+
+六、跳转操作
+上一个选项卡： Ctrl + Tab
+选择至行末： Ctrl + Shift + Tab
+后退到历史文件： Alt + 左箭头
+前进到历史文件： Alt + 右箭头
+转到匹配的括号： Alt + [
+转到匹配的引号： Alt + ‘
+设置/取消书签： Ctrl + Alt + B
+转到上一个文本输入点： Alt + 向上箭头
+转到下一个文本输入点： Alt + 向下箭头
+折叠： Ctrl + Alt + -
+展开： Ctrl + Alt + /
+转到特定行： Ctrl + G
+激活快捷键视图： Ctrl + Shift + L
+激活便捷大纲： Ctrl + O
+
+七、查找操作
+搜索条（查找、替换）： Ctrl + F
+聚焦到搜索条件框内： Ctrl + Alt + F
+聚焦到替换输入框内： Ctrl + Alt + E
+隐藏搜索条：Esc
+在搜索条内换行： Alt + Shift + Enter
+HTML标签规范： Ctrl + Shift + H
+
+八、运行
+Ctrl + R
+九、视图
+活动视图或编辑最大化： Ctrl + M
+放大字体： Ctrl + Shift + =
+减小字体： Ctrl + -
