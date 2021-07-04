@@ -1,0 +1,510 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>三歪教你学HTTP</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export' >
+<div  id='write'  class = 'is-mac'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n1317"><a class="md-toc-inner" href="#前言">前言</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n1285"><a class="md-toc-inner" href="#http入门">HTTP入门</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n474"><a class="md-toc-inner" href="#1-为什么要学http">1. 为什么要学HTTP？</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n243"><a class="md-toc-inner" href="#2-http基础概念">2. HTTP基础概念</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n250"><a class="md-toc-inner" href="#3网站通信粗略过程">3.网站通信粗略过程</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n273"><a class="md-toc-inner" href="#4-告知服务器请求的意图">4. 告知服务器请求的意图</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n279"><a class="md-toc-inner" href="#5-http是不保存状态的协议">5. HTTP是不保存状态的协议</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n289"><a class="md-toc-inner" href="#6持久连接">6.持久连接</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n293"><a class="md-toc-inner" href="#7提升传输效率">7.提升传输效率</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n316"><a class="md-toc-inner" href="#8常用的状态码简述">8.常用的状态码简述</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n317"><a class="md-toc-inner" href="#2xx">2XX</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n322"><a class="md-toc-inner" href="#3xx">3XX</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n329"><a class="md-toc-inner" href="#4xx">4XX</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n335"><a class="md-toc-inner" href="#5xx">5XX</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n339"><a class="md-toc-inner" href="#9服务器与客户端之间的应用程序">9.服务器与客户端之间的应用程序</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n360"><a class="md-toc-inner" href="#10-http首部简述">10. HTTP首部简述</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n361"><a class="md-toc-inner" href="#101-http请求报文">10.1 HTTP请求报文</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n395"><a class="md-toc-inner" href="#102-http响应报文">10.2 HTTP响应报文</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n451"><a class="md-toc-inner" href="#11https简述">11.HTTPS简述</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n480"><a class="md-toc-inner" href="#http2--https">HTTP/2 &amp;&amp; HTTPS</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n484"><a class="md-toc-inner" href="#1-http协议的今生来世">1. HTTP协议的今生来世</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n497"><a class="md-toc-inner" href="#11-http10和http11区别">1.1 HTTP1.0和HTTP1.1区别</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n525"><a class="md-toc-inner" href="#12-http2基础">1.2 HTTP2基础</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n548"><a class="md-toc-inner" href="#13-http11和http2区别">1.3 HTTP1.1和HTTP2区别</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n583"><a class="md-toc-inner" href="#22-http2总结">2.2 HTTP2总结</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n605"><a class="md-toc-inner" href="#23https再次回顾">2.3HTTPS再次回顾</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n1000"><a class="md-toc-inner" href="#http常见面试题">HTTP常见面试题</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1001"><a class="md-toc-inner" href="#1http与https的区别">1.Http与Https的区别：</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1018"><a class="md-toc-inner" href="#2-什么是http协议无状态协议怎么解决http协议无状态协议">2. 什么是Http协议无状态协议?怎么解决Http协议无状态协议?</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1028"><a class="md-toc-inner" href="#3uri和url的区别">3.URI和URL的区别</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1062"><a class="md-toc-inner" href="#4-常用的http方法有哪些">4. 常用的HTTP方法有哪些？</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1079"><a class="md-toc-inner" href="#5-http请求报文与响应报文格式">5. HTTP请求报文与响应报文格式</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1154"><a class="md-toc-inner" href="#6-https工作原理">6. HTTPS工作原理</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1170"><a class="md-toc-inner" href="#6-一次完整的http请求所经历的7个步骤">6. 一次完整的HTTP请求所经历的7个步骤</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1213"><a class="md-toc-inner" href="#7-常见的http相应状态码">7. 常见的HTTP相应状态码</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1245"><a class="md-toc-inner" href="#8-http11版本新特性">8. HTTP1.1版本新特性</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1258"><a class="md-toc-inner" href="#9-http优化方案">9. HTTP优化方案</a></span></p></div><h1><a name="前言" class="md-header-anchor"></a><span>前言</span></h1><p><span>这个文档的内容</span><strong><span>纯手打</span></strong><span>，如果想要看更多的干货文章，关注我的公众号：</span><strong><span>Java3y</span></strong><span>。有更多的原创技术文章和干货！</span></p><p>&nbsp;</p><p><span>目前疯狂处于</span><strong><span>疯狂</span></strong><span>更新PDF中，只要是Java后端的知识，都会有！</span><strong><span>欢迎来我公众号催更！</span></strong><span>微信搜索：</span><strong><span>Java3y</span></strong></p><p>&nbsp;</p><p><span>如果文档中有任何的不懂的问题，都可以直接来找我询问，我乐意帮助你们！公众号有我的</span><strong><span>联系方式</span></strong></p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnyqyo2bnj3076076dga.jpg" referrerpolicy="no-referrer"></p><ul><li><span>🔥</span><strong><span>Java精美脑图</span></strong></li><li><span>🔥</span><strong><span>Java学习路线</span></strong></li><li><span>🔥</span><strong><span>开发常用工具</span></strong></li><li><span>🔥</span><strong><span>精美原创电子书</span></strong></li></ul><p><span>在公众号下回复「</span><strong><span>888</span></strong><span>」即可获取！！</span></p><p>&nbsp;</p><p><strong><span>学习不能盲目，跟着我，会让你事半功倍</span></strong></p><p>&nbsp;</p><p><strong><span>文档允许随意传播，但不能修改任何内容。</span></strong></p><p>&nbsp;</p><p><span>电子书的整理也是挺不容易，如果你觉得有帮助，想要打赏作者，那么可以通过这个收款码打赏我，</span><strong><span>金额不重要，心意最重要</span></strong><span>。主要是我可以通过这个打赏情况来预计大家对这本电子书的评价，嘻嘻</span></p><p>&nbsp;</p><p><img src='https://tva1.sinaimg.cn/large/00831rSTly1gcuu0j4wwqj30u014qako.jpg' width=200px height=200px /><img src='https://tva1.sinaimg.cn/large/00831rSTly1gcuuckh3s4j30rc0yo7jr.jpg' width=200px height=200px /></p><p>&nbsp;</p><p>&nbsp;</p><h1><a name="http入门" class="md-header-anchor"></a><span>HTTP入门</span></h1><h2><a name="1-为什么要学http" class="md-header-anchor"></a><span>1. 为什么要学HTTP？</span></h2><p><span>我们绝大多数的Web应用都是基于HTTP来进行开发的。我们对Web的操作都是通过HTTP协议来进行传输数据的。</span></p><p><span>简单来说，</span><strong><span>HTTP协议就是客户端和服务器交互的一种通迅的格式</span></strong><span>。</span></p><p><span>HTTP的诞生主要是为了能够</span><strong><span>让文档之间相互关联，形成超文本可以互相传阅</span></strong></p><p><span>可以说，Http就是Web通信的基础，这是我们必学的。</span></p><h2><a name="2-http基础概念" class="md-header-anchor"></a><span>2. HTTP基础概念</span></h2><p><span>我们学计算机网络的时候就知道，我们把计算机网络分层了5层，一般我们现在用的都是TCP/IP这么一个分层结构。</span></p><p><span>虽然官方的是ISO 提出的7层结构，但是仅仅是理论基础，在实际上大多人都是使用TCP/IP的分层结构</span></p><p><span>首先，我们先得知道，为什么我们要在计算机网络中分层次？？？</span></p><p><span>因为如果两台计算机能够相互通信的话，实际实现起来是非常困难操作的...我们</span><strong><span>分层的目的就是为了将困难的问题简单化</span></strong><span>，并且如果我们分层了，我们在使用的时候就可</span><strong><span>以仅仅关注我们需要关注的层次，而不用理会其他层</span></strong><span>。</span></p><p><span>如果需要改动设计的时候，我们只需要把变动的层替换即可，并不用涉及到其他的层次。这与我们程序设计中的低耦合是一个概念。</span></p><p><strong><span>而我们的HTTP协议是在最上层，也就是应用层</span></strong><span>。这是最贴近我们的程序员的层次。</span></p><h2><a name="3网站通信粗略过程" class="md-header-anchor"></a><span>3.网站通信粗略过程</span></h2><p><span>我们知道HTTP是在应用层中的，显然，</span><strong><span>我们在Web通信的过程中，不仅仅是需要HTTP协议的，还会涉及到其他的协议的</span></strong><span>。</span></p><p><strong><span>DNS：负责解析域名</span></strong></p><ul><li><span>我们访问一个网页的时候，往往是通过域名来访问的</span><code>www.zhongfucheng.site</code><span>,而计算机通信只认的是我们的主机地址(192.168.xxx.xxx)，因此，当我们输入域名的时候，需要DNS把域名解析成主机来进行访问。</span></li></ul><p><strong><span>HTTP：产生请求报文数据</span></strong></p><ul><li><span>当我们对Web页面进行操作的时候，就会产生HTTP报文数据，请求对应的服务端进行响应。</span></li></ul><p><img src="https://user-gold-cdn.xitu.io/2018/2/6/1616ac76886fe048?w=1165&amp;h=567&amp;f=png&amp;s=72565" referrerpolicy="no-referrer" alt="这里写图片描述"></p><p><strong><span>TCP协议：分割HTTP数据，保证数据运输</span></strong></p><ul><li><span>TCP协议</span><strong><span>采用了三次握手的方式来保证数据的准确运输</span></strong><span>，在运输的数据的时候，发送标识过去给服务器，服务器也返回标识给客户端，而客户端收到消息后再次返回标识给服务器。这样一来就保证了数据运输是可靠的。</span></li></ul><p><strong><span>IP协议：传输数据包，找到通信目的地地址。</span></strong></p><ul><li><span>IP协议把我们的产生的数据包发送给对方，IP地址指明了节点被分配的地址，但IP地址可能会变换，</span><strong><span>我们可以使用ARP协议来将IP地址反射为MAC地址</span></strong><span>。MAC地址是不会更改的，是网卡所属的固定地址。</span></li><li><span>在找到通信目的地之前，</span><strong><span>我们是需要不断的中转的，这过程我们称作为：“路由中转”</span></strong><span>，我们并不知道路由中转了多少次的。因此是不能全面了解到互联网中的传输状况的。</span></li></ul><p><span>接下来就离我们比较远了，属于硬件相关的了，也就是链路层和物理层。以后复习到计算机网络的时候再来补充吧！</span></p><p><strong><span>我们网页上请求数据就是上边这么一个流程</span></strong><span>。</span></p><h2><a name="4-告知服务器请求的意图" class="md-header-anchor"></a><span>4. 告知服务器请求的意图</span></h2><p><span>我们如果开发过Web程序的话，我们知道常用的提交方式有POST和GET方法</span></p><p><span>我们也知道GET是用来获取数据的，POST是用来提交数据的。</span></p><p><span>其实HTTP协议中还支持着其他的方法，比如：Input、Delete、OPTIONS很多这样的方法。而由于常用，于是我们也可能仅仅知道GET和POST方法了。</span></p><p><strong><span>HTTP提供方法的目的就是为了告知服务器该客户端想进行什么操作</span></strong><span>。当HTTP是OPTIONS方法的时候，服务器端就会返回它支持什么HTTP方法。</span></p><p><span>当然了，</span><strong><span>现在RESTful盛行，也就是充分利用了HTTP协议的这些方法</span></strong><span>。</span></p><h2><a name="5-http是不保存状态的协议" class="md-header-anchor"></a><span>5. HTTP是不保存状态的协议</span></h2><p><span>HTTP是无状态的，也就是说，</span><strong><span>它是不对通信状态进行保存的。它并不知道之前通信的对方是谁</span></strong><span>。这样设计的目的就是为了让HTTP简单化，能够快速处理大量的事务！</span></p><p><span>但是，我们经常是需要知道访问的人是谁，于是就有了Cookie技术了。</span></p><ul><li><span>要是服务器端想要记住客户端是谁，那么就颁发一个cookie给客户端</span></li><li><span>客户端把Cookie保存在硬盘中，当下次访问服务器的时候，浏览器会自动把客户端的cookie带过去。</span></li><li><span>就这样，服务器就能够知道这家伙是谁了。</span></li></ul><h2><a name="6持久连接" class="md-header-anchor"></a><span>6.持久连接</span></h2><p><span>在HTTP1.0的时候，每一次进行HTTP通信就会断开一次连接。如果容量很少的文本传输是没有问题的。但是如果我们访问一个网页，该网页有非常多的图片。一个图片就算上一个HTTP请求了。那么在中途中就不断地建立TCP连接、获取图片、断开TCP连接。</span></p><p><span>这样是非常浪费资源的，因此在HTTP1.1版本，就是持久连接了。</span><strong><span>一次HTTP连接能够处理多个请求</span></strong><span>。</span></p><p><span>持久连接为“管线化”方式发送成为了可能：</span><strong><span>在一次HTTP连接里面，不需要等待服务器响应请求，就能够继续发送第二次请求</span></strong><span>。</span></p><h2><a name="7提升传输效率" class="md-header-anchor"></a><span>7.提升传输效率</span></h2><p><span>在说明之前，首先我们要知道什么是实体主体</span></p><ul><li><strong><span>实体主体就是作为数据在HTTP中传输的数据</span></strong><span>。</span></li></ul><p><span>一般地，</span><strong><span>实体主体可以等价为报文主体，报文主体是HTTP中的一部分</span></strong><span>。</span></p><p><span>我们如果不使用任何手段，服务器返回的数据实体主体是原样返回的。我们可以使用两种方式来提高传输效率</span></p><ul><li><strong><span>使用压缩技术把实体主体压小，在客户端再把数据解析</span></strong></li><li><strong><span>使用分块传输编码，将实体主体分块传输，当浏览器解析到实体主体就能够显示了。</span></strong></li></ul><p><span>我们如果在下载东西的过程中断了，按照以前我们是需要重新下载的，但是现在可以在中断中继续下载。我们可以</span><strong><span>使用到获取范围数据，这种叫做范围请求</span></strong><span>！</span></p><p><span>这种请求只会下载资源的一部分。</span></p><ul><li><span>比如我的图片下载到一半了，我们只需要下载另一半就可以组成一张完整的图片了。那么</span><strong><span>请求的时候请求没有下载的一部分即可。</span></strong></li></ul><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnmqukanpg30640643zd.gif" referrerpolicy="no-referrer"></p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnyqyo2bnj3076076dga.jpg" referrerpolicy="no-referrer"></p><p><span>如果⽂档中有任何的不懂的问题，都可以直接来找我询问，我乐意帮助你们！微信搜</span><strong><span>Java3y</span></strong><span>公众号有我的联系⽅式。更多</span><strong><span>原创</span></strong><span>技术⽂章可关注我的GitHub：</span><a href='https://github.com/ZhongFuCheng3y/3y' target='_blank' class='url'>https://github.com/ZhongFuCheng3y/3y</a></p><p><span> </span></p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="8常用的状态码简述" class="md-header-anchor"></a><span>8.常用的状态码简述</span></h2><h3><a name="2xx" class="md-header-anchor"></a><span>2XX</span></h3><p><span>一般是请求成功</span></p><p><span>200 正常处理</span></p><p><span>204 成功处理，但服务器没有新数据返回，显示页面不更新</span></p><p><span>206 对服务器进行范围请求，只返回一部分数据</span></p><h3><a name="3xx" class="md-header-anchor"></a><span>3XX</span></h3><p><span>一般表示重定向</span></p><p><span>301 请求的资源已分配了新的URI中，URL地址改变了。【永久重定向】</span></p><p><span>302 请求的资源临时分配了新的URI中，URL地址没变【临时重定向】</span></p><p><span>303 与302相同的功能，但明确客户端应该采用GET方式来获取资源</span></p><p><span>304 发送了附带请求，但不符合条件【返回未过期的缓存数据】</span></p><p><span>307 与302相同，但不会把POST请求变成GET</span></p><h3><a name="4xx" class="md-header-anchor"></a><span>4XX</span></h3><p><span>表示客户端出错了。</span></p><p><span>400 请求报文语法错误了</span></p><p><span>401 需要认证身份</span></p><p><span>403 没有权限访问</span></p><p><span>404 服务器没有这个资源</span></p><h3><a name="5xx" class="md-header-anchor"></a><span>5XX</span></h3><p><span>服务器出错了</span></p><p><span>500 内部资源出错了</span></p><p><span>503 服务器正忙</span></p><h2><a name="9服务器与客户端之间的应用程序" class="md-header-anchor"></a><span>9.服务器与客户端之间的应用程序</span></h2><p><span>首先要说的是，一个HTTP服务器可以拥有多个站点，也就是说：</span><strong><span>HTTP下可以配置多个虚拟主机。当用户访问不同主机的时候，实际上都是访问同一台HTTP服务器。</span></strong></p><p><span>在客户端和服务器中还有一些用于</span><strong><span>通信数据转发的应用程序</span></strong><span>：</span></p><ul><li><p><span>代理</span></p><ul><li><span>可以用来缓存数据，当代理缓存了数据以后，客户端就可以直接用代理获取数据</span></li><li><span>可以用来对网站进行访问控制，获取访问日志记录</span></li></ul></li><li><p><span>网关</span></p><ul><li><span>能够提供非HTTP请求的操作，访问数据库什么的</span></li></ul></li><li><p><span>隧道</span></p><ul><li><span>建立一条安全的通信路径，可以使用SSL等加密手段进行通信。</span></li></ul></li></ul><h2><a name="10-http首部简述" class="md-header-anchor"></a><span>10. HTTP首部简述</span></h2><h3><a name="101-http请求报文" class="md-header-anchor"></a><span>10.1 HTTP请求报文</span></h3><p><span>HTTP请求报文：在请求中，HTTP报文由方法、URI、HTTP版本、HTTP首部字段等部分组成。</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/2/6/1616ac768892bd66?w=735&amp;h=272&amp;f=png&amp;s=109239" referrerpolicy="no-referrer"></p><ol><li><span>请求行【描述客户端的</span><strong><span>请求方式</span></strong><span>、</span><strong><span>请求的资源名称</span></strong><span>，以及使用的</span><strong><span>HTTP协议版本号</span></strong><span>】</span></li><li><span>首部字段【描述客户端请求哪台主机，以及</span><strong><span>客户端的一些环境信息</span></strong><span>等】</span></li><li><span>一个空行</span></li></ol><p><strong><span>首部字段例子：</span></strong></p><ul><li><span>Accept: text/html,image/*    【浏览器告诉服务器，它支持的数据类型】</span></li><li><span>Accept-Charset: ISO-8859-1</span><span>	</span><span>【浏览器告诉服务器，它支持哪种</span><strong><span>字符集</span></strong><span>】</span></li><li><span>Accept-Encoding: gzip,compress 【浏览器告诉服务器，它支持的</span><strong><span>压缩格式</span></strong><span>】</span></li><li><span>Accept-Language: en-us,zh-cn 【浏览器告诉服务器，它的语言环境】</span></li><li><span>Host: </span><a href='www.it315.org:80' target='_blank' class='url'>www.it315.org:80</a><span>【浏览器告诉服务器，它的想访问哪台主机】</span></li><li><span>If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT【浏览器告诉服务器，缓存数据的时间】</span></li><li><span>Referer: </span><a href='http://www.it315.org/index.jsp' target='_blank' class='url'>http://www.it315.org/index.jsp</a><span>【浏览器告诉服务器，客户机是从那个页面来的---</span><strong><span>反盗链</span></strong><span>】</span></li><li><span>8.User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)【浏览器告诉服务器，浏览器的内核是什么】</span></li><li><span>Cookie【浏览器告诉服务器，</span><strong><span>带来的Cookie是什么</span></strong><span>】</span></li><li><span>Connection: close/Keep-Alive  【浏览器告诉服务器，请求完后是断开链接还是保持链接】 </span></li><li><span>Date: Tue, 11 Jul 2000 18:23:51 GMT【浏览器告诉服务器，请求的时间】 </span></li></ul><h3><a name="102-http响应报文" class="md-header-anchor"></a><span>10.2 HTTP响应报文</span></h3><p><span>HTTP响应报文：在响应中，HTTP报文由HTTP版本、状态码（数字和原因短语）、HTTP首部字段3部分组成。 </span></p><p><img src="https://user-gold-cdn.xitu.io/2018/2/6/1616ac7688c9b6a3?w=724&amp;h=260&amp;f=png&amp;s=100825" referrerpolicy="no-referrer"></p><ol><li><span>一个状态行【用于描述</span><strong><span>服务器对请求的处理结果。</span></strong><span>】</span></li><li><span>首部字段【用于描述</span><strong><span>服务器的基本信息</span></strong><span>，以及</span><strong><span>数据的描述</span></strong><span>，</span><strong><span>服务器通过这些数据的描述信息，可以通知客户端如何处理等一会儿它回送的数据</span></strong><span>】</span></li><li><span>一个空行</span></li><li><span>实体内容【</span><strong><span>服务器向客户端回送的数据</span></strong><span>】</span></li></ol><p>&nbsp;</p><p><strong><span>状态行：</span></strong></p><ul><li><span>格式： HTTP版本号　状态码　原因叙述</span></li><li><span>状态行：HTTP/1.1  200    OK</span></li><li><span>状态码用于表示</span><strong><span>服务器对请求的处理结果</span></strong><span>，它是一个</span><strong><span>三位的十进制数</span></strong><span>。响应状态码分为5类</span>
+<img src="https://user-gold-cdn.xitu.io/2018/2/4/1615e7a4e770c043?w=993&amp;h=290&amp;f=png&amp;s=18523" referrerpolicy="no-referrer"></li></ul><p><strong><span>首部字段例子：</span></strong></p><ul><li><span>Location: </span><a href='http://www.it315.org/index.jsp' target='_blank' class='url'>http://www.it315.org/index.jsp</a><span> 【服务器告诉浏览器</span><strong><span>要跳转到哪个页面</span></strong><span>】</span></li><li><span>Server:apache tomcat【服务器告诉浏览器，服务器的型号是什么】</span></li><li><span>Content-Encoding: gzip 【服务器告诉浏览器</span><strong><span>数据压缩的格式</span></strong><span>】</span></li><li><span>Content-Length: 80 【服务器告诉浏览器回送数据的长度】</span></li><li><span>Content-Language: zh-cn 【服务器告诉浏览器，服务器的语言环境】</span></li><li><span>Content-Type: text/html; charset=GB2312 【服务器告诉浏览器，</span><strong><span>回送数据的类型</span></strong><span>】</span></li><li><span>Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT【服务器告诉浏览器该资源上次更新时间】</span></li><li><span>Refresh: 1;url=</span><a href='http://www.it315.org' target='_blank' class='url'>http://www.it315.org</a><span>【服务器告诉浏览器要</span><strong><span>定时刷新</span></strong><span>】</span></li><li><span>Content-Disposition: attachment; filename=aaa.zip【服务器告诉浏览器</span><strong><span>以下载方式打开数据</span></strong><span>】</span></li><li><span>Transfer-Encoding: chunked  【服务器告诉浏览器数据以分块方式回送】</span></li><li><span>Set-Cookie:SS=Q0=5Lb_nQ; path=/search【服务器告诉浏览器要</span><strong><span>保存Cookie</span></strong><span>】</span></li><li><span>Expires: -1【服务器告诉浏览器</span><strong><span>不要设置缓存</span></strong><span>】</span></li><li><span>Cache-Control: no-cache  【服务器告诉浏览器</span><strong><span>不要设置缓存</span></strong><span>】</span></li><li><span>Pragma: no-cache   【服务器告诉浏览器</span><strong><span>不要设置缓存</span></strong><span>】</span></li><li><span>Connection: close/Keep-Alive   【服务器告诉浏览器连接方式】</span></li><li><span>Date: Tue, 11 Jul 2000 18:23:51 GMT【服务器告诉浏览器回送数据的时间】</span></li></ul><p>&nbsp;</p><h2><a name="11https简述" class="md-header-anchor"></a><span>11.HTTPS简述</span></h2><p><span>HTTP在安全上是不足的</span></p><ul><li><span>通信使用明文【没有加密过内容的】</span></li><li><span>不验证通信方身份，无论是客户端和服务器，都是随意通信的</span></li><li><span>无法证明报文的完整性【别人监听后，可以篡改】</span></li></ul><p><span>我们一般在上网时，使用抓包工具就很容易获取到HTTP请求的信息了，这是TCP/IP在网络通信中无法避免的。</span></p><p><span>假设我们对HTTP报文进行加密了， 那也仅仅是是内容的加密。别人获取到了HTTP内容了，即使无法破解HTTP内容，还是能够篡改的。</span></p><p><span>我们最好就是</span><strong><span>使用SSL建立安全的通信线路</span></strong><span>，就可以在这条线路上进行HTTP通信了。</span></p><p><span>其实HTTPS就是披着SSL的HTTP...</span></p><p><span>HTTPS使用的是共享密钥和公开私有密钥混合来进行加密的。由于公开私有密钥需要太多的资源，不可能一直以公开私有密钥进行通信。因此，</span><strong><span>HTTP在建立通信线路的时候使用公开私有密钥，当建立完连接后，随后就使用共享密钥进行加密和解密了</span></strong></p><p><span>对于认证方面，HTTPS是</span><strong><span>基于第三方的认证机构来获取认受认可的证书</span></strong><span>、因此，可以从中认证该服务器是否是合法的。</span></p><p><span>而客户端方面则需要自己购买认证证书、这实施起来难度是很大的【认证证书需要钱】。</span></p><p><span>所以，一般的网站都是使用表单认证就算了，这是用得最广泛的客户端认证了。</span></p><p>&nbsp;</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnz2dvm1xg3073073q65.gif" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnyqyo2bnj3076076dga.jpg" referrerpolicy="no-referrer"></p><p><span>如果⽂档中有任何的不懂的问题，都可以直接来找我询问，我乐意帮助你们！微信搜</span><strong><span>Java3y</span></strong><span>公众号有我的联系⽅式。更多</span><strong><span>原创</span></strong><span>技术⽂章可关注我的GitHub：</span><a href='https://github.com/ZhongFuCheng3y/3y' target='_blank' class='url'>https://github.com/ZhongFuCheng3y/3y</a></p><p>&nbsp;</p><p>&nbsp;</p><h1><a name="http2--https" class="md-header-anchor"></a><span>HTTP/2 &amp;&amp; HTTPS</span></h1><h2><a name="1-http协议的今生来世" class="md-header-anchor"></a><span>1. HTTP协议的今生来世</span></h2><p><span>到现在为止，HTTP协议已经有四个版本了：</span></p><ul><li><span>HTTP1.0</span></li><li><span>HTTP1.1</span></li><li><span>HTTP/2</span></li><li><span>HTTP/3</span></li></ul><p><span>下面就简单聊聊他们三者的区别，以及整理一些必要的额外知识点。</span></p><p><span>(HTTP/3暂不聊，有兴趣的可以去搜搜）</span></p><h3><a name="11-http10和http11区别" class="md-header-anchor"></a><span>1.1 HTTP1.0和HTTP1.1区别</span></h3><p><span>HTTP1.0和HTTP1.1最主要的区别就是：</span></p><ul><li><span>HTTP1.1默认是</span><strong><span>持久化连接</span></strong><span>！</span></li></ul><p><span>在HTTP1.0默认是短连接：</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef42a864451?w=944&amp;h=285&amp;f=png&amp;s=68970" referrerpolicy="no-referrer"></p><p><span>简单来说就是：</span><strong><span>每次与服务器交互，都需要新开一个连接</span></strong><span>！</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef4311d5d2c?w=505&amp;h=541&amp;f=png&amp;s=225252" referrerpolicy="no-referrer"></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef42a4c5f1a?w=600&amp;h=316&amp;f=png&amp;s=142626" referrerpolicy="no-referrer"></p><p><span>试想一下：请求一张图片，新开一个连接，请求一个CSS文件，新开一个连接，请求一个JS文件，新开一个连接。HTTP协议是基于TCP的，TCP每次都要经过</span><strong><span>三次握手，四次挥手，慢启动</span></strong><span>...这都需要去消耗我们非常多的资源的！</span></p><p><span>在HTTP1.1中默认就使用持久化连接来解决：</span><strong><span>建立一次连接，多次请求均由这个连接完成</span></strong><span>！(如果阻塞了，还是会开新的TCP连接的)</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef42a5e594a?w=932&amp;h=244&amp;f=png&amp;s=39891" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>相对于持久化连接还有另外比较重要的改动：</span></p><ul><li><p><span>HTTP 1.1增加host字段</span></p></li><li><p><span>HTTP 1.1中引入了</span><code>Chunked transfer-coding</code><span>，范围请求，实现断点续传(实际上就是利用HTTP消息头使用分块传输编码，将实体主体分块传输)</span></p></li><li><p><span>HTTP 1.1管线化(pipelining)理论，客户端可以同时发出多个HTTP请求，而不用一个个等待响应之后再请求</span></p><ul><li><span>注意：这个pipelining仅仅是</span><strong><span>限于理论场景下</span></strong><span>，大部分桌面浏览器仍然会</span><strong><span>选择默认关闭</span></strong><span>HTTP pipelining！</span></li><li><span>所以现在使用HTTP1.1协议的应用，都是有</span><strong><span>可能会开多个TCP连接</span></strong><span>的！</span></li></ul></li></ul><p><span>参考资料：</span><a href='https://www.cnblogs.com/gofighting/p/5421890.html'><span>https://www.cnblogs.com/gofighting/p/5421890.html</span></a></p><h3><a name="12-http2基础" class="md-header-anchor"></a><span>1.2 HTTP2基础</span></h3><p><span>在说HTTP2之前，不如先直观比较一下HTTP2和HTTP1.1的区别：</span></p><ul><li><a href='https://http2.akamai.com/demo'><span>https://http2.akamai.com/demo</span></a></li></ul><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef4395f4f75?w=1168&amp;h=678&amp;f=gif&amp;s=818066" referrerpolicy="no-referrer"></p><p><span>上面也已经说了，HTTP 1.1提出了管线化(pipelining)理论，但是仅仅是限于理论的阶段上，这个功能默认还是关闭了的。</span></p><p><span>管线化(pipelining)和非管线化的</span><strong><span>区别</span></strong><span>：</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef42a2e5dd6?w=360&amp;h=224&amp;f=jpeg&amp;s=13696" referrerpolicy="no-referrer"></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef54ecd3300?w=735&amp;h=372&amp;f=png&amp;s=131986" referrerpolicy="no-referrer"></p><blockquote><p><span>HTTP Pipelining其实是把多个HTTP请求放到一个TCP连接中一一发送，而在发送过程中不需要等待服务器对前一个请求的响应；只不过，</span><strong><span>客户端还是要按照发送请求的顺序来接收响应！</span></strong></p></blockquote><hr /><blockquote><p><span>就像在超市收银台或者银行柜台排队时一样，你并不知道前面的</span><strong><span>顾客</span></strong><span>是干脆利索的还是会跟收银员/柜员磨蹭到世界末日（不管怎么说，服务器（即收银员/柜员）是要按照顺序处理请求的，如果</span><strong><span>前一个请求非常耗时（顾客磨蹭）</span></strong><span>，那么后续请求都会受到影响。</span></p></blockquote><p>&nbsp;</p><ul><li><span>在HTTP1.0中，发送一次请求时，需要</span><strong><span>等待服务端响应了</span></strong><span>才可以继续发送请求。</span></li><li><span>在HTTP1.1中，发送一次请求时，不需要等待服务端响应了就可以发送请求了，但是回送数据给客户端的时候，客户端还是需要按照</span><strong><span>响应的顺序</span></strong><span>来一一接收</span></li><li><span>所以说，无论是HTTP1.0还是HTTP1.1提出了Pipelining理论，还是会出现</span><strong><span>阻塞</span></strong><span>的情况。从专业的名词上说这种情况，叫做</span><strong><span>线头阻塞</span></strong><span>（Head of line blocking）简称：HOLB</span></li></ul><h3><a name="13-http11和http2区别" class="md-header-anchor"></a><span>1.3 HTTP1.1和HTTP2区别</span></h3><p><span>HTTP2与HTTP1.1最重要的区别就是</span><strong><span>解决了线头阻塞的</span></strong><span>问题！其中最重要的改动是：</span><strong><span>多路复用 (Multiplexing)</span></strong></p><ul><li><p><span>多路复用意味着线头阻塞将不在是一个问题，允许同时通过单一的 HTTP/2 连接发起</span><strong><span>多重的请求-响应消息</span></strong><span>，合并多个请求为一个的优化将不再适用。</span></p><ul><li><span>(我们知道：HTTP1.1中的Pipelining是没有付诸于实际的)，之前为了</span><strong><span>减少</span></strong><span>HTTP请求，有很多操作将多个请求合并，比如：Spriting(多个图片合成一个图片)，内联Inlining(将图片的原始数据嵌入在CSS文件里面的URL里），拼接Concatenation(一个请求就将其下载完多个JS文件)，分片Sharding(将请求分配到各个主机上)......</span></li></ul></li></ul><p><span>使用了HTTP2可能是这样子的：</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef547ad1464?w=605&amp;h=468&amp;f=png&amp;s=201452" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>HTTP2所有性能增强的核心在于</span><strong><span>新的二进制分帧层</span></strong><span>(不再以文本格式来传输了)，它定义了如何封装http消息并在客户端与服务器之间传输。</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef59a266e62?w=910&amp;h=774&amp;f=png&amp;s=46892" referrerpolicy="no-referrer"></p><p><span>看上去协议的格式和HTTP1.x完全不同了，</span><strong><span>实际上HTTP2并没有改变HTTP1.x的语义</span></strong><span>，只是把原来HTTP1.x的header和body部分用</span><strong><span>frame重新封装了一层</span></strong><span>而已</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef56ba56ba1?w=720&amp;h=378&amp;f=png&amp;s=58160" referrerpolicy="no-referrer"></p><p><span>HTTP2连接上</span><strong><span>传输的每个帧都关联到一个“流”</span></strong><span>。流是一个独立的，双向的帧序列可以通过一个HTTP2的连接在服务端与客户端之间不断的交换数据。</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef56e3a513e?w=644&amp;h=381&amp;f=png&amp;s=54085" referrerpolicy="no-referrer"></p><p><span>实际上运输时：</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef6f61bb592?w=644&amp;h=170&amp;f=png&amp;s=61246" referrerpolicy="no-referrer"></p><p><span>HTTP2还有一些比较重要的改动：</span></p><ul><li><p><span>使用HPACK对HTTP/2头部压缩</span></p></li><li><p><span>服务器推送</span></p><ul><li><span>HTTP2推送资料：</span><a href='https://segmentfault.com/a/1190000015773338'><span>https://segmentfault.com/a/1190000015773338</span></a></li></ul></li><li><p><span>流量控制</span></p><ul><li><span>针对传输中的</span><strong><span>流</span></strong><span>进行控制(TCP默认的粒度是针对连接)</span></li></ul></li><li><p><span>流优先级（Stream Priority）它被用来告诉</span><strong><span>对端哪个流更重要</span></strong><span>。</span></p></li></ul><h2><a name="22-http2总结" class="md-header-anchor"></a><span>2.2 HTTP2总结</span></h2><p><span>HTTP1.1新改动：</span></p><ul><li><strong><span>持久连接</span></strong></li><li><span>请求管道化</span></li><li><span>增加缓存处理（新的字段如cache-control）</span></li><li><span>增加Host字段、支持断点传输等</span></li></ul><p><span>HTTP2新改动：</span></p><ul><li><span>二进制分帧</span></li><li><strong><span>多路复用</span></strong></li><li><span>头部压缩</span></li><li><span>服务器推送</span></li></ul><p>&nbsp;</p><h2><a name="23https再次回顾" class="md-header-anchor"></a><span>2.3HTTPS再次回顾</span></h2><p><span>之前在面试的时候被问到了HTTPS，SSL这样的知识点，也没答上来，这里也简单整理一下。</span></p><p><span>首先还是来解释一下基础的东东：</span></p><ul><li><p><span>对称加密：</span></p><ul><li><span>加密和解密都是用同一个密钥</span></li></ul></li><li><p><span>非对称加密：</span></p><ul><li><span>加密用公开的密钥，解密用私钥</span></li><li><span>(私钥只有自己知道，公开的密钥大家都知道)</span></li></ul></li><li><p><span>数字签名：</span></p><ul><li><span>验证传输的内容</span><strong><span>是对方发送的数据</span></strong></li><li><span>发送的数据</span><strong><span>没有被篡改过</span></strong></li></ul></li><li><p><span>数字证书（Certificate Authority）简称CA</span></p><ul><li><span>认证机构证明是</span><strong><span>真实的服务器发送的数据</span></strong><span>。</span></li></ul></li></ul><p><span>3y的通讯之路：</span></p><ul><li><p><span>远古时代：3y和女朋友聊天传输数据之间没有任何的加密，直接传输</span></p><ul><li><span>内容被看得一清二楚，毫无隐私可言</span></li></ul></li><li><p><span>上古时期：使用对称加密的方式来保证传输的数据只有两个人知道</span></p><ul><li><span>此时有个问题：</span><strong><span>密钥不能通过网络传输</span></strong><span>(因为没有加密之前，都是不安全的)，所以3y和女朋友先约见面一次，告诉对方密码是多少，再对话聊天。</span></li></ul></li><li><p><span>中古时期：3y不单单要跟女朋友聊天，还要跟爸妈聊天的哇(同样不想泄漏了自己的通讯信息)。那有那么多人，难道每一次都要约来见面一次吗？(说明维护多个对称密钥是麻烦的！)---&gt;所以用到了非对称加密</span></p><ul><li><span>3y自己保留一份密码，独一无二的(私钥)。告诉3y女朋友，爸妈一份密码(这份密码是公开的，谁都可以拿---&gt;公钥)。让他们给我发消息之前，先用那份我告诉他们的密码加密一下，再发送给我。我收到信息之后，用自己独一无二的私钥解密就可以了！</span></li></ul></li><li><p><span>近代：此时又出现一个问题：虽然别人不知道私钥是什么，拿不到你</span><strong><span>原始传输</span></strong><span>的数据，但是可以拿到加密后的数据，他们可以</span><strong><span>改掉</span></strong><span>某部分的数据再发送给服务器，这样服务器拿到的数据就</span><strong><span>不是完整的</span></strong><span>了。</span></p><ul><li><span>3y女朋友给3y发了一条信息”3y我喜欢你“，然后用3y给的公钥加密，发给3y了。此时不怀好意的人截取到这条加密的信息，他</span><strong><span>破解不了原信息</span></strong><span>。但是他可以</span><strong><span>修改加密后的数据</span></strong><span>再传给3y。可能3y拿到收到的数据就是”3y你今晚跪键盘吧“</span></li></ul></li><li><p><span>现代：拿到的数据可能被篡改了，我们可以使用数字签名来解决被篡改的问题。数字签名其实也可以看做是</span><strong><span>非对称加密的手段一种</span></strong><span>，具体是这样的：得到原信息hash值，用</span><strong><span>私钥</span></strong><span>对hash值加密，</span><strong><span>另一端</span></strong><span>用</span><strong><span>公钥</span></strong><span>解密，最后比对hash值是否变了。如果变了就说明被篡改了。(一端用私钥加密，另一端用公钥解密，也确保了来源)</span></p></li><li><p><span>目前现在：好像使用了数字签名就万无一失了，其实还有问题。我们使用非对称加密的时候，是使用</span><strong><span>公钥进行加密的</span></strong><span>。如果</span><strong><span>公钥被伪造了</span></strong><span>，后面的数字签名其实就毫无意义了。讲到底：</span><strong><span>还是可能会被中间人攻击</span></strong><span>~此时我们就有了</span><strong><span>CA认证机构来确认公钥的真实性</span></strong><span>！</span></p></li></ul><p><span>对于数字签名和CA认证还是不太了解参考一下</span></p><ul><li><span>阮一峰：</span><a href='http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html'><span>http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html</span></a></li><li><span>什么是数字签名和证书？</span><a href='https://www.jianshu.com/p/9db57e761255'><span>https://www.jianshu.com/p/9db57e761255</span></a></li></ul><hr /><p><span>回到我们的HTTPS，HTTPS其实就是在HTTP协议下多加了一层SSL协议(ps:现在都用TLS协议了)</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef6f19089b3?w=753&amp;h=357&amp;f=png&amp;s=72644" referrerpolicy="no-referrer"></p><p><span>HTTPS采用的是</span><strong><span>混合方式加密</span></strong><span>：</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef6f887edd2?w=716&amp;h=641&amp;f=png&amp;s=178969" referrerpolicy="no-referrer"></p><p><span>过程是这样子的：</span></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef6f890c6ea?w=828&amp;h=686&amp;f=png&amp;s=310032" referrerpolicy="no-referrer"></p><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef684f2cad9?w=853&amp;h=561&amp;f=png&amp;s=283962" referrerpolicy="no-referrer"></p><ul><li><p><span>用户向web服务器发起一个安全连接的请求</span></p></li><li><p><span>服务器返回经过CA认证的数字证书，证书里面包含了服务器的public key(公钥)</span></p></li><li><p><span>用户拿到数字证书，用自己浏览器内置的CA证书解密得到服务器的public key</span></p></li><li><p><span>用户用服务器的public key加密一个用于接下来的对称加密算法的密钥，传给web服务器</span></p><ul><li><span>因为只有服务器有private key可以解密，所以</span><strong><span>不用担心中间人拦截这个加密的密钥</span></strong></li></ul></li><li><p><span>服务器拿到这个加密的密钥，解密获取密钥，再使用对称加密算法，和用户完成接下来的网络通信</span></p></li></ul><p><img src="https://user-gold-cdn.xitu.io/2018/7/30/164eaef6b98d8a82?w=567&amp;h=362&amp;f=png&amp;s=80543" referrerpolicy="no-referrer"></p><p><span>所以相比HTTP，HTTPS 传输更加安全</span></p><ul><li><span>（1） 所有信息都是加密传播，黑客无法窃听。</span></li><li><span>（2） 具有校验机制，一旦被篡改，通信双方会立刻发现。</span></li><li><span>（3） 配备身份证书，防止身份被冒充。</span></li></ul><p><span>参考资料：</span></p><ul><li><span>数字签名、数字证书、SSL、https是什么关系？</span><a href='https://www.zhihu.com/question/52493697/answer/131015846'><span>https://www.zhihu.com/question/52493697/answer/131015846</span></a></li><li><span>浅谈SSL/TLS工作原理：</span><a href='https://zhuanlan.zhihu.com/p/36981565'><span>https://zhuanlan.zhihu.com/p/36981565</span></a></li><li><span>HTTPS:</span><a href='https://tech.upyun.com/article/192/HTTPS%E7%B3%BB%E5%88%97%E5%B9%B2%E8%B4%A7%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AHTTPS%20%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.html'><span>https://tech.upyun.com/article/192/HTTPS%E7%B3%BB%E5%88%97%E5%B9%B2%E8%B4%A7%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AHTTPS%20%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.html</span></a></li><li><span>网站HTTP升级HTTPS完全配置手册：</span><a href='https://www.cnblogs.com/powertoolsteam/p/http2https.html'><span>https://www.cnblogs.com/powertoolsteam/p/http2https.html</span></a></li></ul><p>&nbsp;</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnythvd93j307806qglo.jpg" referrerpolicy="no-referrer"></p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnyqyo2bnj3076076dga.jpg" referrerpolicy="no-referrer"></p><p><span>如果⽂档中有任何的不懂的问题，都可以直接来找我询问，我乐意帮助你们！微信搜</span><strong><span>Java3y</span></strong><span>公众号有我的联系⽅式。更多</span><strong><span>原创</span></strong><span>技术⽂章可关注我的GitHub：</span><a href='https://github.com/ZhongFuCheng3y/3y' target='_blank' class='url'>https://github.com/ZhongFuCheng3y/3y</a></p><p>&nbsp;</p><h1><a name="http常见面试题" class="md-header-anchor"></a><span>HTTP常见面试题</span></h1><h2><a name="1http与https的区别" class="md-header-anchor"></a><span>1.Http与Https的区别：</span></h2><blockquote><p><span>Http与Https的区别：</span></p></blockquote><ol><li><span>HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头</span></li><li><span>HTTP 是不安全的，而 HTTPS 是安全的</span></li><li><span>HTTP 标准端口是80 ，而 HTTPS 的标准端口是443</span></li><li><span>在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层</span></li><li><span>HTTP 无法加密，而HTTPS 对传输的数据进行加密</span></li><li><span>HTTP无需证书，而HTTPS 需要CA机构颁发的SSL证书</span></li></ol><p>&nbsp;</p><h2><a name="2-什么是http协议无状态协议怎么解决http协议无状态协议" class="md-header-anchor"></a><span>2. 什么是Http协议无状态协议?怎么解决Http协议无状态协议?</span></h2><ul><li><p><strong><span>无状态协议对于事务处理没有记忆能力</span></strong><span>。</span><strong><span>缺少状态意味着如果后续处理需要前面的信息</span></strong></p><ul><li><strong><span>也就是说，当客户端一次HTTP请求完成以后，客户端再发送一次HTTP请求，HTTP并不知道当前客户端是一个”老用户“。</span></strong></li></ul></li><li><p><strong><span>可以使用Cookie来解决无状态的问题，Cookie就相当于一个通行证，第一次访问的时候给客户端发送一个Cookie，当客户端再次来的时候，拿着Cookie(通行证)，那么服务器就知道这个是”老用户“。</span></strong></p></li></ul><p>&nbsp;</p><h2><a name="3uri和url的区别" class="md-header-anchor"></a><span>3.URI和URL的区别</span></h2><blockquote><p><span>URI和URL的区别</span></p></blockquote><p><strong><span>URI，是uniform resource identifier，统一资源标识符，用来唯一的标识一个资源。</span></strong></p><ul><li><span>Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的</span></li><li><span>URI一般由三部组成：</span></li><li><span>①访问资源的命名机制</span></li><li><span>②存放资源的主机名</span></li><li><span>③资源自身的名称，由路径表示，着重强调于资源。</span></li></ul><p><strong><span>URL是uniform resource locator，统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。</span></strong></p><ul><li><span>URL是Internet上用来描述信息资源的字符串，主要用在各种WWW客户程序和服务器程序上，特别是著名的Mosaic。</span></li><li><span>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。URL一般由三部组成：</span></li><li><span>①协议(或称为服务方式)</span></li><li><span>②存有该资源的主机IP地址(有时也包括端口号)</span></li><li><span>③主机资源的具体地址。如目录和文件名等</span></li></ul><p><strong><span>URN，uniform resource name，统一资源命名，是通过名字来标识资源，比如</span><a href='mailto:mailto:java-net@java.sun.com' target='_blank' class='url'>mailto:java-net@java.sun.com</a><span>。</span></strong></p><ul><li><span>URI是以一种抽象的，高层次概念定义统一资源标识，而URL和URN则是具体的资源标识的方式。URL和URN都是一种URI。笼统地说，每个 URL 都是 URI，但不一定每个 URI 都是 URL。这是因为 URI 还包括一个子类，即统一资源名称 (URN)，它命名资源但不指定如何定位资源。上面的 mailto、news 和 isbn URI 都是 URN 的示例。</span></li></ul><p><span>在Java的URI中，</span><strong><span>一个URI实例可以代表绝对的，也可以是相对的，只要它符合URI的语法规则。而URL类则不仅符合语义，还包含了定位该资源的信息，因此它不能是相对的。</span></strong></p><p><strong><span>在Java类库中，URI类不包含任何访问资源的方法，它唯一的作用就是解析。</span></strong></p><p><strong><span>相反的是，URL类可以打开一个到达资源的流。</span></strong></p><h2><a name="4-常用的http方法有哪些" class="md-header-anchor"></a><span>4. 常用的HTTP方法有哪些？</span></h2><blockquote><p><span>常用的HTTP方法有哪些?</span></p></blockquote><ul><li><span>GET： 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器</span></li><li><span>POST：用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。</span></li><li><span>PUT： 传输文件，报文主体中包含文件内容，保存到对应URI位置。</span></li><li><span>HEAD： 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。</span></li><li><span>DELETE：删除文件，与PUT方法相反，删除对应URI位置的文件。</span></li><li><span>OPTIONS：查询相应URI支持的HTTP方法。</span></li></ul><p>&nbsp;</p><h2><a name="5-http请求报文与响应报文格式" class="md-header-anchor"></a><span>5. HTTP请求报文与响应报文格式</span></h2><blockquote><p><span>HTTP请求报文与响应报文格式</span></p></blockquote><p><span>请求报文包含四部分：</span></p><p><img src="https://i.imgur.com/aYFJJqC.png" referrerpolicy="no-referrer"></p><ul><li><span>a、请求行：包含请求方法、URI、HTTP版本信息</span></li><li><span>b、请求首部字段</span></li><li><span>c、请求内容实体</span></li><li><span>d、空行</span></li></ul><p><span>响应报文包含四部分：</span></p><p><img src="https://i.imgur.com/ATZfnSJ.png" referrerpolicy="no-referrer"></p><ul><li><span>a、状态行：包含HTTP版本、状态码、状态码的原因短语</span></li><li><span>b、响应首部字段</span></li><li><span>c、响应内容实体</span></li><li><span>d、空行</span></li></ul><p><span>常见的首部：</span></p><ul><li><p><strong><span>通用首部字段（请求报文与响应报文都会使用的首部字段）</span></strong></p><ul><li><span>Date：创建报文时间</span></li><li><span>Connection：连接的管理</span></li><li><span>Cache-Control：缓存的控制</span></li><li><span>Transfer-Encoding：报文主体的传输编码方式</span></li></ul></li><li><p><strong><span>请求首部字段（请求报文会使用的首部字段）</span></strong></p><ul><li><span>Host：请求资源所在服务器</span></li><li><span>Accept：可处理的媒体类型</span></li><li><span>Accept-Charset：可接收的字符集</span></li><li><span>Accept-Encoding：可接受的内容编码</span></li><li><span>Accept-Language：可接受的自然语言</span></li></ul></li><li><p><strong><span>响应首部字段（响应报文会使用的首部字段）</span></strong></p><ul><li><span>Accept-Ranges：可接受的字节范围</span></li><li><span>Location：令客户端重新定向到的URI</span></li><li><span>Server：HTTP服务器的安装信息</span></li></ul></li><li><p><strong><span>实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）</span></strong></p><ul><li><span>Allow：资源可支持的HTTP方法</span></li><li><span>Content-Type：实体主类的类型</span></li><li><span>Content-Encoding：实体主体适用的编码方式</span></li><li><span>Content-Language：实体主体的自然语言</span></li><li><span>Content-Length：实体主体的的字节数</span></li><li><span>Content-Range：实体主体的位置范围，一般用于发出部分请求时使用</span></li></ul></li></ul><h2><a name="6-https工作原理" class="md-header-anchor"></a><span>6. HTTPS工作原理</span></h2><blockquote><p><span>HTTPS工作原理</span></p></blockquote><ul><li><span>一、首先HTTP请求服务端生成证书，客户端对证书的有效期、合法性、域名是否与请求的域名一致、证书的公钥（RSA加密）等进行校验；</span></li><li><span>二、客户端如果校验通过后，就根据证书的公钥的有效， 生成随机数，随机数使用公钥进行加密（RSA加密）；</span></li><li><span>三、消息体产生的后，对它的摘要进行MD5（或者SHA1）算法加密，此时就得到了RSA签名；</span></li><li><span>四、发送给服务端，此时只有服务端（RSA私钥）能解密。</span></li><li><span>五、解密得到的随机数，再用AES加密，作为密钥（此时的密钥只有客户端和服务端知道）。</span></li></ul><p><img src="https://i.imgur.com/e9BYaV5.png" referrerpolicy="no-referrer"></p><p><span>具体的参考链接：</span><a href='http://blog.csdn.net/sean_cd/article/details/6966130'><span>http://blog.csdn.net/sean_cd/article/details/6966130</span></a></p><h2><a name="6-一次完整的http请求所经历的7个步骤" class="md-header-anchor"></a><span>6. 一次完整的HTTP请求所经历的7个步骤</span></h2><blockquote><p><span>一次完整的HTTP请求所经历的7个步骤</span></p></blockquote><p><span>HTTP通信机制是在一次完整的HTTP通信过程中，Web浏览器与Web服务器之间将完成下列7个步骤： </span></p><ul><li><span>建立TCP连接</span></li></ul><p><span>在HTTP工作开始之前，Web浏览器首先要通过网络与Web服务器建立连接，该连接是通过TCP来完成的，该协议与IP协议共同构建 Internet，即著名的TCP/IP协议族，因此Internet又被称作是TCP/IP网络。</span><strong><span>HTTP是比TCP更高层次的应用层协议，根据规则， 只有低层协议建立之后才能，才能进行更层协议的连接，因此，首先要建立TCP连接，一般TCP连接的端口号是80。</span></strong></p><ul><li><span>Web浏览器向Web服务器发送请求行</span></li></ul><p><span>一旦建立了TCP连接，</span><strong><span>Web浏览器就会向Web服务器发送请求命令</span></strong><span>。例如：GET /sample/hello.jsp HTTP/1.1。</span></p><ul><li><p><span>Web浏览器发送请求头</span></p><ul><li><span>浏览器发送其请求命令之后，还要以头信息的形式向Web服务器发送一些别的信息，</span><strong><span>之后浏览器发送了一空白行来通知服务器</span></strong><span>，它已经结束了该头信息的发送。 </span></li></ul></li><li><p><span>Web服务器应答 </span></p><ul><li><span>客户机向服务器发出请求后，服务器会客户机回送应答， </span><strong><span>HTTP/1.1 200 OK ，应答的第一部分是协议的版本号和应答状态码。</span></strong></li></ul></li><li><p><span>Web服务器发送应答头</span></p><ul><li><span>正如客户端会随同请求发送关于自身的信息一样，服务器也会随同应答向用户发送关于它自己的数据及被请求的文档。 </span></li></ul></li><li><p><span>Web服务器向浏览器发送数据 </span></p><ul><li><span>Web服务器向浏览器发送头信息后，它会发送一个空白行来表示头信息的发送到此为结束，接着，</span><strong><span>它就以Content-Type应答头信息所描述的格式发送用户所请求的实际数据</span></strong><span>。</span></li></ul></li><li><p><span>Web服务器关闭TCP连接 </span></p><ul><li><span>一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码：</span></li></ul></li></ul><p><span> </span><code>Connection:keep-alive</code></p><p><span>TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继续通过相同的连接发送请求。保持连接节省了为每个请求建立新连接所需的时间，还节约了网络带宽。</span></p><p><span>建立TCP连接-&gt;发送请求行-&gt;发送请求头-&gt;（到达服务器）发送状态行-&gt;发送响应头-&gt;发送响应数据-&gt;断TCP连接</span></p><p>&nbsp;</p><p><span>最具体的HTTP请求过程：</span><a href='http://blog.51cto.com/linux5588/1351007'><span>http://blog.51cto.com/linux5588/1351007</span></a></p><h2><a name="7-常见的http相应状态码" class="md-header-anchor"></a><span>7. 常见的HTTP相应状态码</span></h2><blockquote><p><span>常见的HTTP相应状态码</span></p></blockquote><ul><li><span>200：请求被正常处理</span></li><li><span>204：请求被受理但没有资源可以返回</span></li><li><span>206：客户端只是请求资源的一部分，服务器只对请求的部分资源执行GET方法，相应报文中通过Content-Range指定范围的资源。</span></li><li><span>301：永久性重定向</span></li><li><span>302：临时重定向</span></li><li><span>303：与302状态码有相似功能，只是它希望客户端在请求一个URI的时候，能通过GET方法重定向到另一个URI上</span></li><li><span>304：发送附带条件的请求时，条件不满足时返回，与重定向无关</span></li><li><span>307：临时重定向，与302类似，只是强制要求使用POST方法</span></li><li><span>400：请求报文语法有误，服务器无法识别</span></li><li><span>401：请求需要认证</span></li><li><span>403：请求的对应资源禁止被访问</span></li><li><span>404：服务器无法找到对应资源</span></li><li><span>500：服务器内部错误</span></li><li><span>503：服务器正忙</span></li></ul><h2><a name="8-http11版本新特性" class="md-header-anchor"></a><span>8. HTTP1.1版本新特性</span></h2><blockquote><p><span>HTTP1.1版本新特性</span></p></blockquote><ul><li><p><span>a、</span><strong><span>默认持久连接节省通信量</span></strong><span>，只要客户端服务端任意一端没有明确提出断开TCP连接，就一直保持连接，可以发送多次HTTP请求</span></p></li><li><p><span>b、</span><strong><span>管线化，客户端可以同时发出多个HTTP请求，而不用一个个等待响应</span></strong></p></li><li><p><span>c、</span><strong><span>断点续传</span></strong></p><ul><li><strong><span>实际上就是利用HTTP消息头使用分块传输编码，将实体主体分块传输。</span></strong></li></ul></li></ul><h2><a name="9-http优化方案" class="md-header-anchor"></a><span>9. HTTP优化方案</span></h2><p><span>我下面就简要概括一下：</span></p><ul><li><strong><span>TCP复用：TCP连接复用是将多个客户端的HTTP请求复用到一个服务器端TCP连接上，而HTTP复用则是一个客户端的多个HTTP请求通过一个TCP连接进行处理。前者是负载均衡设备的独特功能；而后者是HTTP 1.1协议所支持的新功能</span></strong></li><li><strong><span>内容缓存：将经常用到的内容进行缓存起来，那么客户端就可以直接在内存中获取相应的数据了。</span></strong></li><li><strong><span>压缩：将文本数据进行压缩，减少带宽</span></strong></li><li><strong><span>SSL加速（SSL Acceleration）：使用SSL协议对HTTP协议进行加密，在通道内加密并加速</span></strong></li><li><strong><span>TCP缓冲：通过采用TCP缓冲技术，可以提高服务器端响应时间和处理效率，减少由于通信链路问题给服务器造成的连接负担。</span></strong></li></ul><p><span>详情参考：</span></p><ul><li><a href='http://blog.51cto.com/virtualadc/580832'><span>http://blog.51cto.com/virtualadc/580832</span></a><span> </span></li><li><a href='http://www.cnblogs.com/cocowool/archive/2011/08/22/2149929.html'><span>http://www.cnblogs.com/cocowool/archive/2011/08/22/2149929.html</span></a></li></ul><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnyycpfyog308c08cmyo.gif" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcnyqyo2bnj3076076dga.jpg" referrerpolicy="no-referrer"></p><p><span>如果⽂档中有任何的不懂的问题，都可以直接来找我询问，我乐意帮助你们！微信搜</span><strong><span>Java3y</span></strong><span>公众号有我的联系⽅式。更多</span><strong><span>原创</span></strong><span>技术⽂章可关注我的GitHub：</span><a href='https://github.com/ZhongFuCheng3y/3y' target='_blank' class='url'>https://github.com/ZhongFuCheng3y/3y</a></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+</body>
+</html>
